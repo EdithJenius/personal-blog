@@ -1,0 +1,59 @@
+---
+import { CodeXml } from "@lucide/astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="关于 | Edith">
+  <section class="about">
+    <div class="shell about-grid">
+      <aside>
+        <div class="portrait">
+          <span>EDITH</span>
+          <strong>Think.<br />Build.<br />Learn.</strong>
+        </div>
+      </aside>
+      <div class="about-copy">
+        <p class="eyebrow">ABOUT ME</p>
+        <h1>你好，我是 Edith。</h1>
+        <p class="lead">我关注 AI 产品、Agent 系统和知识工作流，也喜欢把复杂问题整理成清晰、可执行的结构。</p>
+        <div class="body-copy">
+          <p>我的工作通常从一个还不够清楚的问题开始：理解场景、辨认真正的限制、设计流程，然后把它做成可以被使用和验证的东西。</p>
+          <p>我相信好的 AI 产品不只是“更聪明”，还应该更可靠、更透明，也更尊重使用者原本的工作方式。</p>
+          <p>这个博客用来记录项目过程、方法思考和阶段性判断。很多内容仍在变化，但我愿意把真实的探索留下来。</p>
+        </div>
+        <div class="principles">
+          <div><span>01</span><p>从真实问题出发</p></div>
+          <div><span>02</span><p>用交付验证判断</p></div>
+          <div><span>03</span><p>让知识可以复用</p></div>
+        </div>
+        <a class="github" href="https://github.com/EdithJenius" target="_blank" rel="noreferrer">
+          <CodeXml size={19} /> 在 GitHub 找到我
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about { padding: 82px 0 36px; }
+  .about-grid { display: grid; grid-template-columns: minmax(280px, .72fr) minmax(0, 1.28fr); gap: 90px; align-items: start; }
+  aside { position: sticky; top: 108px; }
+  .portrait { display: flex; min-height: 480px; padding: 26px; color: #f7f2e7; background: var(--green); flex-direction: column; justify-content: space-between; }
+  .portrait span { font-size: 11px; font-weight: 750; }
+  .portrait strong { font-family: Georgia, serif; font-size: 54px; font-weight: 500; line-height: .95; }
+  h1 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: clamp(48px, 7vw, 74px); font-weight: 500; }
+  .lead { margin: 28px 0 40px; font-family: Georgia, "Noto Serif SC", serif; font-size: 23px; line-height: 1.75; }
+  .body-copy { color: var(--muted); font-size: 16px; line-height: 1.95; }
+  .body-copy p { margin: 0 0 20px; }
+  .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 46px 0; }
+  .principles div { padding-top: 16px; border-top: 1px solid var(--line); }
+  .principles span { color: var(--accent); font-family: Georgia, serif; font-size: 12px; }
+  .principles p { margin: 22px 0 0; font-size: 14px; font-weight: 700; }
+  .github { display: inline-flex; align-items: center; gap: 9px; padding-bottom: 9px; border-bottom: 1px solid var(--ink); font-weight: 700; }
+  @media (max-width: 800px) {
+    .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    aside { position: static; }
+    .portrait { min-height: 300px; }
+  }
+  @media (max-width: 520px) { .principles { grid-template-columns: 1fr; } }
+</style>

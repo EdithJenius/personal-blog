@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+
+const posts = (await getCollection("posts", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<BaseLayout title="文章 | Edith">
+  <section class="page-head">
+    <div class="shell">
+      <p class="eyebrow">WRITING</p>
+      <h1>文章与笔记</h1>
+      <p>关于 AI 产品、Agent 系统、知识工作流，以及把想法变成实际交付的过程。</p>
+    </div>
+  </section>
+  <section class="posts">
+    <div class="shell post-grid">
+      {posts.map((post) => <PostCard post={post} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { padding: 82px 0 70px; border-bottom: 1px solid var(--line); }
+  h1 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: clamp(48px, 7vw, 76px); font-weight: 500; }
+  .page-head p:last-child { max-width: 680px; margin: 24px 0 0; color: var(--muted); font-size: 17px; line-height: 1.8; }
+  .posts { padding: 54px 0; }
+  .post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 42px; }
+  @media (max-width: 700px) { .post-grid { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,325 @@
+---
+import { ArrowRight, AudioWaveform, Fingerprint, ShieldCheck, VolumeX } from "@lucide/astro";
+---
+
+<div class="system-gate" data-system-gate>
+  <canvas class="system-canvas" aria-hidden="true"></canvas>
+  <div class="scanline" aria-hidden="true"></div>
+
+  <header class="gate-header">
+    <div class="system-id">
+      <span class="system-dot"></span>
+      <span>EDITH.OS</span>
+      <small>PERSONAL KNOWLEDGE INTERFACE</small>
+    </div>
+    <div class="gate-status">
+      <span>STATUS</span>
+      <strong>ONLINE</strong>
+    </div>
+  </header>
+
+  <main class="gate-main">
+    <section class="telemetry" aria-label="系统状态">
+      <div class="telemetry-row">
+        <span>CORE</span>
+        <div><i style="--level: 91%"></i></div>
+        <strong>91</strong>
+      </div>
+      <div class="telemetry-row">
+        <span>MEM</span>
+        <div><i style="--level: 73%"></i></div>
+        <strong>73</strong>
+      </div>
+      <div class="telemetry-row">
+        <span>LINK</span>
+        <div><i style="--level: 98%"></i></div>
+        <strong>98</strong>
+      </div>
+      <div class="coordinate">31.2304° N / 121.4737° E</div>
+    </section>
+
+    <section class="gate-console">
+      <div class="radar-wrap" aria-hidden="true">
+        <div class="radar">
+          <span class="orbit orbit-one"></span>
+          <span class="orbit orbit-two"></span>
+          <span class="crosshair crosshair-x"></span>
+          <span class="crosshair crosshair-y"></span>
+          <span class="sweep"></span>
+          <span class="radar-core"><Fingerprint size={38} stroke-width={1.2} /></span>
+          <span class="signal signal-a"></span>
+          <span class="signal signal-b"></span>
+          <span class="signal signal-c"></span>
+        </div>
+      </div>
+
+      <div class="access-panel">
+        <div class="panel-label"><ShieldCheck size={15} /> SECURE ACCESS NODE</div>
+        <h1>欢迎进入<br /><span>Edith 的数字空间</span></h1>
+        <p>这里保存关于 AI 产品、Agent 系统和真实项目的持续记录。</p>
+
+        <label for="visitor-alias">访问者代号 <small>可选</small></label>
+        <div class="alias-field">
+          <span>&gt;</span>
+          <input id="visitor-alias" type="text" maxlength="24" autocomplete="off" placeholder="GUEST" />
+        </div>
+
+        <button class="enter-system" type="button">
+          <span>建立连接</span>
+          <ArrowRight size={18} />
+        </button>
+        <button class="skip-system" type="button">直接进入博客</button>
+      </div>
+    </section>
+
+    <aside class="system-log" aria-label="系统日志">
+      <div class="log-heading"><span>BOOT SEQUENCE</span><strong>LIVE</strong></div>
+      <ol>
+        <li><time>00:01</time><span>Knowledge index mounted</span><b>OK</b></li>
+        <li><time>00:02</time><span>Project archive linked</span><b>OK</b></li>
+        <li><time>00:03</time><span>Agent protocols loaded</span><b>OK</b></li>
+        <li><time>00:04</time><span>Interface awaiting input</span><b>READY</b></li>
+      </ol>
+    </aside>
+  </main>
+
+  <footer class="gate-footer">
+    <span>BUILD 2026.06</span>
+    <span>NO DATA IS COLLECTED</span>
+    <button class="sound-toggle" type="button" aria-label="切换界面声音" aria-pressed="false">
+      <VolumeX class="sound-off" size={17} />
+      <AudioWaveform class="sound-on" size={17} />
+    </button>
+  </footer>
+</div>
+
+<script>
+  const gate = document.querySelector("[data-system-gate]");
+  const canvas = gate?.querySelector("canvas");
+  const enterButton = gate?.querySelector(".enter-system");
+  const skipButton = gate?.querySelector(".skip-system");
+  const soundButton = gate?.querySelector(".sound-toggle");
+  const aliasInput = gate?.querySelector("#visitor-alias");
+  const ctx = canvas?.getContext("2d");
+  let soundEnabled = false;
+  let frame = 0;
+
+  const resize = () => {
+    if (!canvas || !ctx) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+
+  const render = () => {
+    if (!canvas || !ctx || !gate || gate.classList.contains("is-hidden")) return;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = "rgba(78, 226, 241, 0.08)";
+    ctx.lineWidth = 1;
+    const spacing = 44;
+    const offset = (frame * 0.12) % spacing;
+    for (let x = -spacing + offset; x < width + spacing; x += spacing) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+      ctx.stroke();
+    }
+    for (let y = -spacing + offset; y < height + spacing; y += spacing) {
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+      ctx.stroke();
+    }
+    frame += 1;
+    requestAnimationFrame(render);
+  };
+
+  const beep = () => {
+    if (!soundEnabled) return;
+    const AudioContextClass = window.AudioContext;
+    if (!AudioContextClass) return;
+    const audio = new AudioContextClass();
+    const oscillator = audio.createOscillator();
+    const gain = audio.createGain();
+    oscillator.frequency.value = 420;
+    oscillator.type = "sine";
+    gain.gain.setValueAtTime(0.035, audio.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + 0.14);
+    oscillator.connect(gain);
+    gain.connect(audio.destination);
+    oscillator.start();
+    oscillator.stop(audio.currentTime + 0.14);
+  };
+
+  const closeGate = () => {
+    if (!gate) return;
+    beep();
+    const alias = aliasInput?.value.trim();
+    if (alias) sessionStorage.setItem("edith-visitor-alias", alias);
+    sessionStorage.setItem("edith-system-access", "granted");
+    gate.classList.add("is-leaving");
+    document.body.classList.remove("gate-active");
+    window.setTimeout(() => gate.classList.add("is-hidden"), 680);
+  };
+
+  if (gate) {
+    const forceIntro = new URLSearchParams(window.location.search).has("intro");
+    if (!forceIntro && sessionStorage.getItem("edith-system-access") === "granted") {
+      gate.classList.add("is-hidden");
+    } else {
+      document.body.classList.add("gate-active");
+      resize();
+      render();
+    }
+  }
+
+  window.addEventListener("resize", resize);
+  enterButton?.addEventListener("click", closeGate);
+  skipButton?.addEventListener("click", closeGate);
+  aliasInput?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") closeGate();
+  });
+  soundButton?.addEventListener("click", () => {
+    soundEnabled = !soundEnabled;
+    soundButton.setAttribute("aria-pressed", String(soundEnabled));
+    beep();
+  });
+</script>
+
+<style is:global>
+  body.gate-active { overflow: hidden; }
+  .system-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    overflow: hidden;
+    color: #d8f8fb;
+    background: #071014;
+    opacity: 1;
+    transition: opacity .55s ease, transform .7s ease;
+  }
+  .system-gate.is-leaving { opacity: 0; transform: scale(1.025); pointer-events: none; }
+  .system-gate.is-hidden { display: none; }
+  .system-canvas, .scanline { position: absolute; inset: 0; pointer-events: none; }
+  .scanline {
+    z-index: 1;
+    height: 2px;
+    opacity: .4;
+    background: #51e6f1;
+    box-shadow: 0 0 18px #51e6f1;
+    animation: system-scan 5.5s linear infinite;
+  }
+  .gate-header, .gate-footer {
+    position: absolute;
+    z-index: 4;
+    right: 34px;
+    left: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10px;
+  }
+  .gate-header { top: 28px; padding-bottom: 18px; border-bottom: 1px solid rgba(107, 232, 243, .24); }
+  .gate-footer { bottom: 24px; padding-top: 14px; border-top: 1px solid rgba(107, 232, 243, .2); color: #7a9298; }
+  .system-id { display: flex; align-items: center; gap: 10px; font-weight: 800; color: #e4fcff; }
+  .system-id small { color: #70878d; font-size: 9px; font-weight: 500; }
+  .system-dot { width: 7px; height: 7px; background: #fb684d; box-shadow: 0 0 12px #fb684d; animation: system-pulse 1.6s ease-in-out infinite; }
+  .gate-status { display: flex; align-items: center; gap: 9px; color: #70878d; }
+  .gate-status strong { color: #75ebc0; font-size: 10px; }
+  .gate-main {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    width: min(1380px, calc(100% - 72px));
+    height: 100%;
+    margin: 0 auto;
+    padding: 100px 0 84px;
+    grid-template-columns: 190px 1fr 250px;
+    gap: 34px;
+    align-items: center;
+  }
+  .telemetry { align-self: stretch; display: flex; padding: 36px 0; flex-direction: column; justify-content: center; }
+  .telemetry-row { display: grid; grid-template-columns: 38px 1fr 24px; gap: 9px; align-items: center; margin: 12px 0; font: 9px ui-monospace, monospace; color: #6d858b; }
+  .telemetry-row > div { height: 3px; background: #183138; }
+  .telemetry-row i { display: block; width: var(--level); height: 100%; background: #4ee2f1; box-shadow: 0 0 9px rgba(78,226,241,.6); }
+  .telemetry-row strong { color: #a4cbd1; font-size: 9px; }
+  .coordinate { margin-top: auto; color: #52666b; font: 9px ui-monospace, monospace; writing-mode: vertical-rl; }
+  .gate-console { display: grid; grid-template-columns: minmax(300px, .9fr) minmax(360px, 1.1fr); align-items: center; }
+  .radar-wrap { display: grid; place-items: center; }
+  .radar {
+    position: relative;
+    width: min(33vw, 430px);
+    aspect-ratio: 1;
+    border: 1px solid rgba(78,226,241,.32);
+    border-radius: 50%;
+    box-shadow: inset 0 0 55px rgba(78,226,241,.05), 0 0 40px rgba(78,226,241,.05);
+  }
+  .radar::before, .radar::after, .orbit { position: absolute; inset: 12%; border: 1px solid rgba(78,226,241,.18); border-radius: 50%; content: ""; }
+  .radar::after { inset: 30%; border-style: dashed; }
+  .orbit-one { inset: 20%; animation: system-spin 13s linear infinite; border-color: rgba(251,104,77,.5) transparent rgba(251,104,77,.5) transparent; }
+  .orbit-two { inset: 7%; animation: system-spin 20s linear reverse infinite; border-style: dashed; }
+  .crosshair { position: absolute; background: rgba(78,226,241,.16); }
+  .crosshair-x { top: 50%; right: 0; left: 0; height: 1px; }
+  .crosshair-y { top: 0; bottom: 0; left: 50%; width: 1px; }
+  .sweep { position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, transparent 0deg, rgba(78,226,241,.15) 38deg, transparent 72deg); animation: system-spin 4.5s linear infinite; }
+  .radar-core { position: absolute; inset: 38%; display: grid; place-items: center; border: 1px solid #4ee2f1; border-radius: 50%; color: #8ef5ff; box-shadow: 0 0 25px rgba(78,226,241,.18); }
+  .signal { position: absolute; width: 7px; height: 7px; border: 1px solid #fb684d; background: #071014; box-shadow: 0 0 10px #fb684d; transform: rotate(45deg); }
+  .signal-a { top: 18%; left: 29%; } .signal-b { right: 12%; bottom: 34%; } .signal-c { bottom: 17%; left: 31%; }
+  .access-panel { max-width: 520px; padding-left: 42px; }
+  .panel-label { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; color: #69dce8; font: 10px ui-monospace, monospace; }
+  .access-panel h1 { margin: 0; color: #f2fafb; font-family: ui-sans-serif, system-ui, sans-serif; font-size: clamp(36px, 4.8vw, 68px); font-weight: 300; line-height: 1.06; }
+  .access-panel h1 span { color: #5ce3ee; }
+  .access-panel > p { max-width: 470px; margin: 23px 0 34px; color: #789096; font-size: 14px; line-height: 1.8; }
+  .access-panel label { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: #6f8990; font: 9px ui-monospace, monospace; }
+  .access-panel label small { color: #465b61; }
+  .alias-field { display: flex; align-items: center; height: 44px; padding: 0 12px; border: 1px solid #24464e; background: rgba(4,15,19,.7); }
+  .alias-field:focus-within { border-color: #4ee2f1; box-shadow: 0 0 0 1px rgba(78,226,241,.15); }
+  .alias-field span { color: #fb684d; font: 15px ui-monospace, monospace; }
+  .alias-field input { width: 100%; border: 0; outline: 0; padding: 0 10px; color: #d9f7fa; background: transparent; font: 12px ui-monospace, monospace; letter-spacing: 0; }
+  .alias-field input::placeholder { color: #40585e; }
+  .enter-system { display: flex; width: 100%; height: 48px; margin-top: 14px; padding: 0 16px; border: 1px solid #4ee2f1; align-items: center; justify-content: space-between; color: #061014; background: #4ee2f1; font-weight: 800; cursor: pointer; }
+  .enter-system:hover { background: #8df5fd; }
+  .skip-system { display: block; margin: 14px auto 0; border: 0; color: #60777d; background: transparent; font: 10px ui-monospace, monospace; cursor: pointer; }
+  .skip-system:hover { color: #c8edf1; }
+  .system-log { align-self: stretch; display: flex; padding: 36px 0; flex-direction: column; justify-content: center; }
+  .log-heading { display: flex; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid #244149; color: #6c858c; font: 9px ui-monospace, monospace; }
+  .log-heading strong { color: #fb684d; }
+  .system-log ol { margin: 16px 0 0; padding: 0; list-style: none; }
+  .system-log li { display: grid; grid-template-columns: 34px 1fr auto; gap: 8px; margin: 13px 0; color: #82999e; font: 9px/1.45 ui-monospace, monospace; }
+  .system-log time { color: #41585e; }
+  .system-log b { color: #66d7b0; font-size: 8px; }
+  .sound-toggle { display: grid; width: 30px; height: 28px; place-items: center; border: 1px solid #294047; color: #7d969c; background: transparent; cursor: pointer; }
+  .sound-on { display: none; }
+  .sound-toggle[aria-pressed="true"] .sound-off { display: none; }
+  .sound-toggle[aria-pressed="true"] .sound-on { display: block; color: #4ee2f1; }
+  @keyframes system-spin { to { transform: rotate(360deg); } }
+  @keyframes system-scan { from { transform: translateY(-10px); } to { transform: translateY(100vh); } }
+  @keyframes system-pulse { 50% { opacity: .35; } }
+  @media (max-width: 1000px) {
+    .gate-main { width: min(100% - 40px, 900px); grid-template-columns: 1fr; }
+    .telemetry, .system-log { display: none; }
+    .gate-console { grid-template-columns: .8fr 1.2fr; }
+    .radar { width: min(39vw, 340px); }
+  }
+  @media (max-width: 700px) {
+    .gate-header, .gate-footer { right: 18px; left: 18px; }
+    .system-id small, .gate-footer > span:nth-child(2) { display: none; }
+    .gate-main { width: calc(100% - 32px); padding: 82px 0 64px; }
+    .gate-console { grid-template-columns: 1fr; gap: 22px; }
+    .radar { width: min(64vw, 260px); }
+    .access-panel { padding-left: 0; text-align: center; }
+    .panel-label { justify-content: center; }
+    .access-panel h1 { font-size: 38px; }
+    .access-panel > p { margin: 17px auto 24px; font-size: 13px; }
+    .access-panel label { justify-content: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scanline, .orbit, .sweep, .system-dot { animation: none; }
+  }
+</style>

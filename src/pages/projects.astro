@@ -1,0 +1,78 @@
+---
+import { ArrowUpRight, Boxes, BookOpen, LayoutDashboard } from "@lucide/astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="项目 | Edith">
+  <section class="page-head">
+    <div class="shell">
+      <p class="eyebrow">PROJECTS</p>
+      <h1>项目档案</h1>
+      <p>一些正在推进的产品、系统与内容工程。它们既是交付，也是我检验方法和积累判断的地方。</p>
+    </div>
+  </section>
+  <section class="projects">
+    <div class="shell project-list">
+      <article>
+        <div class="project-index">01</div>
+        <div class="project-icon"><LayoutDashboard size={24} /></div>
+        <div>
+          <p class="project-type">BUSINESS SYSTEM</p>
+          <h2>轻量 ERP 系统</h2>
+          <p>面向实际业务流程的轻量管理工具，覆盖基础数据、操作界面、测试与部署方案。</p>
+          <div class="tags"><span>Python</span><span>产品设计</span><span>业务流程</span></div>
+        </div>
+        <a href="https://github.com/EdithJenius/Codex_f/tree/main/ERP" target="_blank" rel="noreferrer" aria-label="查看 ERP 项目">
+          <ArrowUpRight size={20} />
+        </a>
+      </article>
+      <article>
+        <div class="project-index">02</div>
+        <div class="project-icon"><Boxes size={24} /></div>
+        <div>
+          <p class="project-type">AGENT SYSTEM</p>
+          <h2>OpenClaw 多 Agent 工作流</h2>
+          <p>围绕 Agent 协作、部署、任务分工和交付规范建立的一套实践资料与运行方法。</p>
+          <div class="tags"><span>Agent</span><span>工作流</span><span>知识系统</span></div>
+        </div>
+        <a href="https://github.com/EdithJenius/Codex_f/tree/main/tec" target="_blank" rel="noreferrer" aria-label="查看 OpenClaw 项目">
+          <ArrowUpRight size={20} />
+        </a>
+      </article>
+      <article>
+        <div class="project-index">03</div>
+        <div class="project-icon"><BookOpen size={24} /></div>
+        <div>
+          <p class="project-type">CURRICULUM</p>
+          <h2>AI 产品课程体系</h2>
+          <p>从基础认知、技术解析到企业级项目交付，持续构建的 AI 产品实战课程与素材库。</p>
+          <div class="tags"><span>AI 产品</span><span>课程设计</span><span>项目实践</span></div>
+        </div>
+        <a href="https://github.com/EdithJenius/Codex_f/tree/main/tec/curriculum_v1.0" target="_blank" rel="noreferrer" aria-label="查看课程项目">
+          <ArrowUpRight size={20} />
+        </a>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head { padding: 82px 0 70px; border-bottom: 1px solid var(--line); }
+  h1 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: clamp(48px, 7vw, 76px); font-weight: 500; }
+  .page-head p:last-child { max-width: 680px; margin: 24px 0 0; color: var(--muted); font-size: 17px; line-height: 1.8; }
+  .projects { padding: 42px 0; }
+  .project-list article { display: grid; grid-template-columns: 42px 54px 1fr auto; gap: 26px; align-items: start; padding: 42px 0; border-bottom: 1px solid var(--line); }
+  .project-index { color: var(--muted); font-family: Georgia, serif; font-size: 13px; }
+  .project-icon { display: grid; width: 52px; height: 52px; place-items: center; color: white; background: var(--green); }
+  .project-type { margin: 0 0 8px; color: var(--accent); font-size: 11px; font-weight: 750; }
+  h2 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: 29px; font-weight: 500; }
+  article p:not(.project-type) { max-width: 650px; margin: 14px 0 18px; color: var(--muted); line-height: 1.75; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tags span { padding: 5px 8px; border: 1px solid var(--line); color: #555d65; font-size: 11px; }
+  article > a { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid var(--line); }
+  article > a:hover { color: white; border-color: var(--accent); background: var(--accent); }
+  @media (max-width: 650px) {
+    .project-list article { grid-template-columns: 42px 1fr auto; gap: 18px; }
+    .project-icon { display: none; }
+  }
+</style>
