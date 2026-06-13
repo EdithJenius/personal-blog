@@ -8,7 +8,7 @@ const posts = defineCollection({
     description: z.string(),
     publishedAt: z.coerce.date(),
     category: z.string(),
-    format: z.enum(["深度文章", "实践笔记", "持续更新"]),
+    format: z.enum(["深度文章", "实践笔记", "持续更新", "项目复盘"]),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false)
   })
