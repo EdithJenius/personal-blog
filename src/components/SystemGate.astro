@@ -1,8 +1,10 @@
 ---
 import { ArrowRight, AudioWaveform, Fingerprint, ShieldCheck, VolumeX } from "@lucide/astro";
+
+const homeHref = import.meta.env.BASE_URL;
 ---
 
-<div class="system-gate" data-system-gate>
+<div class="system-gate" data-system-gate data-home-url={homeHref}>
   <canvas class="system-canvas" aria-hidden="true"></canvas>
   <div class="scanline" aria-hidden="true"></div>
 
@@ -156,7 +158,7 @@ import { ArrowRight, AudioWaveform, Fingerprint, ShieldCheck, VolumeX } from "@l
     oscillator.stop(audio.currentTime + 0.14);
   };
 
-  const closeGate = () => {
+  const closeGate = ({ redirectHome = false } = {}) => {
     if (!gate) return;
     beep();
     const alias = aliasInput?.value.trim();
@@ -164,7 +166,14 @@ import { ArrowRight, AudioWaveform, Fingerprint, ShieldCheck, VolumeX } from "@l
     sessionStorage.setItem("edith-system-access", "granted");
     gate.classList.add("is-leaving");
     document.body.classList.remove("gate-active");
-    window.setTimeout(() => gate.classList.add("is-hidden"), 680);
+    window.setTimeout(() => {
+      const homeUrl = gate.getAttribute("data-home-url") || "/";
+      if (redirectHome && window.location.pathname !== new URL(homeUrl, window.location.origin).pathname) {
+        window.location.href = homeUrl;
+        return;
+      }
+      gate.classList.add("is-hidden");
+    }, 680);
   };
 
   if (gate) {
@@ -179,10 +188,10 @@ import { ArrowRight, AudioWaveform, Fingerprint, ShieldCheck, VolumeX } from "@l
   }
 
   window.addEventListener("resize", resize);
-  enterButton?.addEventListener("click", closeGate);
-  skipButton?.addEventListener("click", closeGate);
+  enterButton?.addEventListener("click", () => closeGate({ redirectHome: true }));
+  skipButton?.addEventListener("click", () => closeGate());
   aliasInput?.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") closeGate();
+    if (event.key === "Enter") closeGate({ redirectHome: true });
   });
   soundButton?.addEventListener("click", () => {
     soundEnabled = !soundEnabled;

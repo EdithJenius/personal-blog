@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { ArrowRight, CodeXml, Layers3, Sparkles } from "@lucide/astro";
+import { ArrowRight, BrainCircuit, CodeXml, Layers3, Sparkles } from "@lucide/astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
 
@@ -8,6 +8,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const posts = (await getCollection("posts", ({ data }) => !data.draft))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 const featured = posts.filter((post) => post.data.featured).slice(0, 3);
+const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
 ---
 
 <BaseLayout>
@@ -87,6 +88,42 @@ const featured = posts.filter((post) => post.data.featured).slice(0, 3);
     </div>
   </section>
 
+  <section class="engine-panel" id="knowledge-engine">
+    <div class="shell engine-grid">
+      <div>
+        <p class="eyebrow">KNOWLEDGE ENGINE</p>
+        <h2 class="section-title">知识迭代引擎网页端</h2>
+        <p class="section-lead">
+          一个用于查看学习主线、实验进度、评测结果、Codex 反馈和能力进展的操作台。
+          后台知识收集与写入交给 Codex，网页端负责把当前状态清楚地呈现出来。
+        </p>
+        <a class="engine-link" href={knowledgeEngineUrl}>
+          打开网页端 <ArrowRight size={17} />
+        </a>
+      </div>
+      <a class="engine-preview" href={knowledgeEngineUrl} aria-label="打开知识迭代引擎网页端">
+        <div class="engine-preview-head">
+          <span><BrainCircuit size={18} /> Learning View</span>
+          <strong>LIVE</strong>
+        </div>
+        <div class="engine-preview-body">
+          <div>
+            <span>实验进度</span>
+            <strong>72%</strong>
+          </div>
+          <div>
+            <span>评测通过</span>
+            <strong>8/10</strong>
+          </div>
+          <div>
+            <span>反馈记录</span>
+            <strong>24</strong>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
   <section class="latest">
     <div class="shell">
       <div class="section-row">
@@ -161,6 +198,18 @@ const featured = posts.filter((post) => post.data.featured).slice(0, 3);
   .focus-number { color: var(--accent); font-family: Georgia, serif; font-size: 13px; }
   .focus-grid h3 { margin: 40px 0 14px; font-family: Georgia, "Noto Serif SC", serif; font-size: 25px; font-weight: 500; }
   .focus-grid p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+  .engine-panel { padding: 82px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #eef4f2; }
+  .engine-grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(340px, 1.05fr); gap: 64px; align-items: center; }
+  .engine-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 28px; padding: 0 18px; color: white; background: var(--green); font-size: 14px; font-weight: 750; }
+  .engine-link:hover { background: var(--accent); }
+  .engine-preview { display: block; padding: 18px; color: #e9fcfb; background: #101820; border: 1px solid #2c4449; }
+  .engine-preview-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid rgba(233,252,251,.18); font-size: 12px; font-weight: 750; }
+  .engine-preview-head span { display: inline-flex; align-items: center; gap: 8px; }
+  .engine-preview-head strong { color: #75ebc0; font-size: 11px; }
+  .engine-preview-body { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 18px; }
+  .engine-preview-body div { min-height: 134px; padding: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(233,252,251,.12); }
+  .engine-preview-body span { display: block; color: #9fb8bd; font-size: 12px; }
+  .engine-preview-body strong { display: block; margin-top: 42px; font-family: Georgia, serif; font-size: 31px; font-weight: 500; }
   .section-row { display: flex; align-items: end; justify-content: space-between; }
   .post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 42px; margin-top: 48px; }
   .project-band { padding: 72px 0; color: #f5f1e7; background: var(--ink); }
@@ -180,6 +229,7 @@ const featured = posts.filter((post) => post.data.featured).slice(0, 3);
     .focus-heading { grid-template-columns: 1fr; gap: 24px; }
     .focus-grid { grid-template-columns: 1fr; gap: 32px; }
     .focus-grid h3 { margin-top: 24px; }
+    .engine-grid { grid-template-columns: 1fr; gap: 34px; }
     .post-grid { grid-template-columns: 1fr; }
     .project-inner { grid-template-columns: auto 1fr; }
     .project-inner > a { grid-column: 2; justify-self: start; }
@@ -192,6 +242,9 @@ const featured = posts.filter((post) => post.data.featured).slice(0, 3);
     .topic-inner { padding: 18px 0; align-items: flex-start; flex-direction: column; gap: 14px; }
     .topic-inner div { gap: 12px 22px; }
     .visual-center strong { font-size: 42px; }
+    .engine-preview-body { grid-template-columns: 1fr; }
+    .engine-preview-body div { min-height: 96px; }
+    .engine-preview-body strong { margin-top: 22px; }
     .section-row, .connect-inner { align-items: flex-start; flex-direction: column; gap: 24px; }
     .project-inner { grid-template-columns: 1fr; }
     .project-inner > a { grid-column: 1; }
