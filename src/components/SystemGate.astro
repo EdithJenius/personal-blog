@@ -1,7 +1,9 @@
 ---
 import { ArrowRight, AudioWaveform, Fingerprint, ShieldCheck, VolumeX } from "@lucide/astro";
 
-const homeHref = import.meta.env.BASE_URL;
+const homeHref = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 ---
 
 <div class="system-gate" data-system-gate data-home-url={homeHref}>
@@ -164,16 +166,14 @@ const homeHref = import.meta.env.BASE_URL;
     const alias = aliasInput?.value.trim();
     if (alias) sessionStorage.setItem("edith-visitor-alias", alias);
     sessionStorage.setItem("edith-system-access", "granted");
+    const homeUrl = gate.getAttribute("data-home-url") || "/";
+    if (redirectHome && window.location.pathname !== new URL(homeUrl, window.location.origin).pathname) {
+      window.location.replace(homeUrl);
+      return;
+    }
     gate.classList.add("is-leaving");
     document.body.classList.remove("gate-active");
-    window.setTimeout(() => {
-      const homeUrl = gate.getAttribute("data-home-url") || "/";
-      if (redirectHome && window.location.pathname !== new URL(homeUrl, window.location.origin).pathname) {
-        window.location.href = homeUrl;
-        return;
-      }
-      gate.classList.add("is-hidden");
-    }, 680);
+    window.setTimeout(() => gate.classList.add("is-hidden"), 680);
   };
 
   if (gate) {
