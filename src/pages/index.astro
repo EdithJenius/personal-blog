@@ -124,6 +124,46 @@ const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
     </div>
   </section>
 
+  <section class="lab-updates" id="mini-program-data-merge">
+    <div class="shell">
+      <div class="section-row">
+        <div>
+          <p class="eyebrow">UPDATE LOG</p>
+          <h2 class="section-title">小程序开发与数据合并实验</h2>
+        </div>
+        <a class="text-link" href="https://github.com/EdithJenius/Codex_f" target="_blank" rel="noreferrer">
+          查看代码 <ArrowRight size={16} />
+        </a>
+      </div>
+      <div class="update-grid">
+        <article>
+          <span class="update-index">01</span>
+          <h3>微信小程序业务前端</h3>
+          <p>
+            基于 vt-weixin01 梳理酒店、优惠券、权益、用户与门店接口，沉淀小程序端请求封装、
+            状态管理、Vant Weapp 组件集成和地图能力接入。
+          </p>
+        </article>
+        <article>
+          <span class="update-index">02</span>
+          <h3>酒店房型动态适配</h3>
+          <p>
+            围绕游虾鲸酒店数据接入，设计酒店映射表、房型价格动态查询、早餐与取消规则适配，
+            尽量保持现有小程序接口稳定。
+          </p>
+        </article>
+        <article>
+          <span class="update-index">03</span>
+          <h3>多源数据合并</h3>
+          <p>
+            将供应商侧 whaleHotelId、whaleRoomId、ratePlanId、detailId 等关键标识保留下来，
+            为后续多供应商房型合并、标准化展示和可下单链路预留空间。
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="latest">
     <div class="shell">
       <div class="section-row">
@@ -189,7 +229,7 @@ const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
   .topic-inner div { display: flex; flex-wrap: wrap; gap: 30px; }
   .topic-inner a { font-family: Georgia, "Noto Serif SC", serif; font-size: 15px; }
   .topic-inner a:hover { color: var(--accent); }
-  .focus, .latest { padding: 88px 0; }
+  .focus, .latest, .lab-updates { padding: 88px 0; }
   .focus { background: var(--surface); }
   .focus-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; }
   .focus-heading .section-lead { margin: 0; }
@@ -210,6 +250,12 @@ const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
   .engine-preview-body div { min-height: 134px; padding: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(233,252,251,.12); }
   .engine-preview-body span { display: block; color: #9fb8bd; font-size: 12px; }
   .engine-preview-body strong { display: block; margin-top: 42px; font-family: Georgia, serif; font-size: 31px; font-weight: 500; }
+  .lab-updates { background: var(--surface); border-bottom: 1px solid var(--line); }
+  .update-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 46px; }
+  .update-grid article { min-height: 256px; padding: 22px; background: #fffdf8; border: 1px solid var(--line); }
+  .update-index { color: var(--accent); font-family: Georgia, serif; font-size: 13px; }
+  .update-grid h3 { margin: 34px 0 14px; font-family: Georgia, "Noto Serif SC", serif; font-size: 24px; font-weight: 500; }
+  .update-grid p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.85; }
   .section-row { display: flex; align-items: end; justify-content: space-between; }
   .post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 42px; margin-top: 48px; }
   .project-band { padding: 72px 0; color: #f5f1e7; background: var(--ink); }
@@ -230,6 +276,8 @@ const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
     .focus-grid { grid-template-columns: 1fr; gap: 32px; }
     .focus-grid h3 { margin-top: 24px; }
     .engine-grid { grid-template-columns: 1fr; gap: 34px; }
+    .update-grid { grid-template-columns: 1fr; }
+    .update-grid article { min-height: auto; }
     .post-grid { grid-template-columns: 1fr; }
     .project-inner { grid-template-columns: auto 1fr; }
     .project-inner > a { grid-column: 2; justify-self: start; }
