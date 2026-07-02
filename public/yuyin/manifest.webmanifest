@@ -1,0 +1,13 @@
+{
+  "name": "余音 · EPUB 听书",
+  "short_name": "余音",
+  "description": "导入 EPUB，在设备上生成属于你的有声书。",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f1e9",
+  "theme_color": "#294b43",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

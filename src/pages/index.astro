@@ -171,7 +171,7 @@ const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
         <h2 class="section-title">近期项目更新</h2>
         <p class="section-lead">
           本轮从素材与流程继续走向真实业务验证：完成珠宝首波选品和供应链模型，
-          跑通 Codex + DeepSeek 主副 Agent 协作，并搭建全球旅行定制网站的核心页面。
+          跑通 Codex + DeepSeek 主副 Agent 协作，搭建全球旅行定制网站，并发布“余音”阅读与听书应用。
         </p>
       </div>
       <div class="build-list">
@@ -189,6 +189,11 @@ const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
           <span>03</span>
           <h3>全球旅行定制网站</h3>
           <p>完成首页、目的地列表、咨询页面与澳大利亚专题页，覆盖家庭、情侣和小团体的行程灵感、区域玩法与咨询入口。</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3><a href={`${base}/yuyin/index.html`}>余音 · EPUB 阅读与听书</a></h3>
+          <p>电子书在设备本地解析，支持目录、搜索、书签、笔记和连续朗读；Android 版提供原生 TTS、锁屏播放与媒体控制。</p>
         </article>
       </div>
     </div>
@@ -292,6 +297,7 @@ const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
   .build-list article { display: grid; grid-template-columns: 54px minmax(160px, .42fr) 1fr; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--line); }
   .build-list span { color: var(--accent); font-family: Georgia, serif; font-size: 13px; }
   .build-list h3 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: 22px; font-weight: 500; line-height: 1.35; }
+  .build-list h3 a:hover { color: var(--accent); }
   .build-list p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
   .section-row { display: flex; align-items: end; justify-content: space-between; }
   .post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 42px; margin-top: 48px; }
