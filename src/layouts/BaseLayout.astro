@@ -5,11 +5,13 @@ import SystemGate from "../components/SystemGate.astro";
 interface Props {
   title?: string;
   description?: string;
+  showGate?: boolean;
 }
 
 const {
   title = "Edith | AI 产品与实践",
-  description = "记录 AI 产品、Agent 系统与真实项目实践。"
+  description = "记录 AI 产品、Agent 系统与真实项目实践。",
+  showGate = true
 } = Astro.props;
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "");
@@ -33,7 +35,7 @@ const nav = [
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
   </head>
   <body>
-    <SystemGate />
+    {showGate && <SystemGate />}
     <header class="site-header">
       <div class="shell header-inner">
         <a class="brand" href={`${base}/`} aria-label="Edith 首页">
@@ -62,7 +64,11 @@ const nav = [
     <footer class="site-footer">
       <div class="shell footer-inner">
         <p>在真实问题里学习，在持续交付中成长。</p>
-        <p>© {new Date().getFullYear()} Edith</p>
+        <div class="footer-links" aria-label="法律与政策链接">
+          <a href={`${base}/terms/`}>Terms</a>
+          <a href={`${base}/privacy/`}>Privacy</a>
+          <span>© {new Date().getFullYear()} Edith</span>
+        </div>
       </div>
     </footer>
     <script>
@@ -129,6 +135,8 @@ const nav = [
   .menu-close { display: none; }
   .site-footer { border-top: 1px solid var(--line); margin-top: 88px; }
   .footer-inner { min-height: 100px; display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 13px; }
+  .footer-links { display: flex; align-items: center; gap: 18px; }
+  .footer-links a:hover { color: var(--accent); }
   .eyebrow { margin: 0 0 16px; color: var(--accent); font-size: 12px; font-weight: 750; letter-spacing: 0; text-transform: uppercase; }
   .section-title { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: clamp(30px, 4vw, 46px); font-weight: 500; line-height: 1.15; }
   .section-lead { max-width: 640px; color: var(--muted); font-size: 16px; line-height: 1.8; }
@@ -153,7 +161,8 @@ const nav = [
     .nav-links a { padding: 12px 4px; }
     .nav-links a.active { box-shadow: none; color: var(--accent); }
     .github-link { justify-content: start; }
-    .footer-inner { align-items: flex-start; flex-direction: column; justify-content: center; gap: 4px; }
+    .footer-inner { align-items: flex-start; flex-direction: column; justify-content: center; gap: 10px; }
     .footer-inner p { margin: 0; }
+    .footer-links { flex-wrap: wrap; gap: 12px 18px; }
   }
 </style>
