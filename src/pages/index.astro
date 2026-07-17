@@ -10,6 +10,7 @@ const posts = (await getCollection("posts", ({ data }) => !data.draft))
 const featured = posts.filter((post) => post.data.featured).slice(0, 3);
 const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
 const ecoAgentUrl = `${base}/eco-sourcing-agent/index.html`;
+const qimuHomeUrl = `${base}/qimu-home/index.html`;
 ---
 
 <BaseLayout>
@@ -28,7 +29,7 @@ const ecoAgentUrl = `${base}/eco-sourcing-agent/index.html`;
         </div>
         <div class="proof-row" aria-label="内容概览">
           <span><strong>3</strong> 个实践方向</span>
-          <span><strong>5</strong> 个公开项目</span>
+          <span><strong>6</strong> 个公开项目</span>
           <span><strong>持续</strong> 更新笔记</span>
         </div>
       </div>
@@ -171,30 +172,30 @@ const ecoAgentUrl = `${base}/eco-sourcing-agent/index.html`;
         <p class="eyebrow">CURRENT BUILDS</p>
         <h2 class="section-title">近期项目更新</h2>
         <p class="section-lead">
-          本轮把电商选品流程做成可操作的 Agent 工作台，同时继续推进 J.A.R.V.I.S 私人测试版、
-          余音听书、Skill 知识库与自动剪辑能力沉淀。
+          本轮新增栖木家居样板站，并把每周知识蒸馏推进到可追踪闭环：Prompt 迁移、
+          Persona 路由、洞天 GDS 接入约束和课程资产都进入了候选治理。
         </p>
       </div>
       <div class="build-list">
         <article>
           <span>01</span>
-          <h3><a href={ecoAgentUrl}>电商选品 Agent 指挥台</a></h3>
-          <p>把候选品排序、趋势信号、竞品监控、供应商数量、利润预算和下一步行动建议串成前端原型，并沉淀 1688 开放平台 API 申请说明。</p>
+          <h3><a href={qimuHomeUrl}>栖木家居 QIMU HOME</a></h3>
+          <p>为实木床和餐桌椅打造品牌合作样板站，覆盖产品场景、材质承诺、工程配套、城市合作与门店共创，并提供合作咨询弹窗。</p>
         </article>
         <article>
           <span>02</span>
-          <h3><a href="https://github.com/EdithJenius/JARVIS-Releases/releases/tag/v0.357.18-private.1" target="_blank" rel="noreferrer">J.A.R.V.I.S 私人测试版</a></h3>
-          <p>发布 v0.357.18-private.1 二进制测试包，完成原创主题、悬浮指令核心、权限状态展示、私人备份、诊断脱敏和私有更新源隔离。</p>
+          <h3><a href={knowledgeEngineUrl}>2026-07-17 每周知识蒸馏</a></h3>
+          <p>新增 3 条 Inbox 候选、1 条失败样本和 3 份候选变更单，把 Prompt 精简、AI 工作台接线和洞天 GDS 限流口径纳入知识迭代系统。</p>
         </article>
         <article>
           <span>03</span>
-          <h3><a href={`${base}/yuyin/index.html`}>余音 1.1.2 · 多角色听书</a></h3>
-          <p>继续完善 EPUB 本地阅读与听书体验，加入 16 个角色模板、手机端角色分析、Kokoro 中文离线音色入口与睡眠定时。</p>
+          <h3><a href={ecoAgentUrl}>电商选品 Agent 指挥台</a></h3>
+          <p>继续保留选品雷达、趋势信号、竞品监控、供应商数量、利润预算和下一步行动建议，用作电商选品工作流的前端原型。</p>
         </article>
         <article>
           <span>04</span>
-          <h3><a href={knowledgeEngineUrl}>Skill 知识库与能力路由</a></h3>
-          <p>统一登记系统、插件、个人与外部 Skill，明确默认、按需、试验和淘汰路由，并建立从真实任务到 Proven 的治理生命周期。</p>
+          <h3><a href="https://github.com/EdithJenius/JARVIS-Releases/releases/tag/v0.357.18-private.1" target="_blank" rel="noreferrer">J.A.R.V.I.S 私人测试版</a></h3>
+          <p>保持私人测试版发布链路，围绕原创主题、悬浮指令核心、权限状态、私人备份、诊断脱敏和私有更新源继续沉淀。</p>
         </article>
       </div>
     </div>
