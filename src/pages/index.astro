@@ -11,6 +11,10 @@ const featured = posts.filter((post) => post.data.featured).slice(0, 3);
 const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
 const ecoAgentUrl = `${base}/eco-sourcing-agent/index.html`;
 const qimuHomeUrl = `${base}/qimu-home/index.html`;
+const pawformUrl = `${base}/pawform/index.html`;
+const aurenObjectsUrl = `${base}/auren-objects/index.html`;
+const novaTurnUrl = `${base}/nova-turn/index.html`;
+const nourishFreshUrl = `${base}/nourish-fresh/index.html`;
 ---
 
 <BaseLayout>
@@ -29,7 +33,7 @@ const qimuHomeUrl = `${base}/qimu-home/index.html`;
         </div>
         <div class="proof-row" aria-label="内容概览">
           <span><strong>3</strong> 个实践方向</span>
-          <span><strong>6</strong> 个公开项目</span>
+          <span><strong>10</strong> 个公开项目</span>
           <span><strong>持续</strong> 更新笔记</span>
         </div>
       </div>
@@ -172,8 +176,8 @@ const qimuHomeUrl = `${base}/qimu-home/index.html`;
         <p class="eyebrow">CURRENT BUILDS</p>
         <h2 class="section-title">近期项目更新</h2>
         <p class="section-lead">
-          本轮新增栖木家居样板站，并把每周知识蒸馏推进到可追踪闭环：Prompt 迁移、
-          Persona 路由、洞天 GDS 接入约束和课程资产都进入了候选治理。
+          五个独立品牌站现已统一发布：从家居、宠物到零售与内容体验；知识迭代引擎、
+          选品 Agent 和 JARVIS 也持续作为可访问的产品实验。
         </p>
       </div>
       <div class="build-list">
@@ -184,16 +188,36 @@ const qimuHomeUrl = `${base}/qimu-home/index.html`;
         </article>
         <article>
           <span>02</span>
+          <h3><a href={pawformUrl}>PAWFORM 宠物品牌站</a></h3>
+          <p>围绕宠物食品、用品与日常护理构建的品牌体验站，包含产品分类、内容叙事和可探索的品类页面。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3><a href={aurenObjectsUrl}>AUREN OBJECTS</a></h3>
+          <p>面向生活器物的零售样板站，提供作品集合、商品详情、购物袋和品牌故事等完整交互链路。</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3><a href={novaTurnUrl}>NOVA TURN</a></h3>
+          <p>面向中文市场的销售型官网实验，聚焦清晰的产品价值表达、核心内容层级与转化路径。</p>
+        </article>
+        <article>
+          <span>05</span>
+          <h3><a href={nourishFreshUrl}>Nourish Fresh</a></h3>
+          <p>以鲜食、配方和原料为主线的宠物食品体验站，包含食材视觉、产品筛选和沉浸式内容模块。</p>
+        </article>
+        <article>
+          <span>06</span>
           <h3><a href={knowledgeEngineUrl}>2026-07-17 每周知识蒸馏</a></h3>
           <p>新增 3 条 Inbox 候选、1 条失败样本和 3 份候选变更单，把 Prompt 精简、AI 工作台接线和洞天 GDS 限流口径纳入知识迭代系统。</p>
         </article>
         <article>
-          <span>03</span>
+          <span>07</span>
           <h3><a href={ecoAgentUrl}>电商选品 Agent 指挥台</a></h3>
           <p>继续保留选品雷达、趋势信号、竞品监控、供应商数量、利润预算和下一步行动建议，用作电商选品工作流的前端原型。</p>
         </article>
         <article>
-          <span>04</span>
+          <span>08</span>
           <h3><a href="https://github.com/EdithJenius/JARVIS-Releases/releases/tag/v0.357.18-private.1" target="_blank" rel="noreferrer">J.A.R.V.I.S 私人测试版</a></h3>
           <p>保持私人测试版发布链路，围绕原创主题、悬浮指令核心、权限状态、私人备份、诊断脱敏和私有更新源继续沉淀。</p>
         </article>
