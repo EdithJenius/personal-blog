@@ -9,11 +9,13 @@ const posts = (await getCollection("posts", ({ data }) => !data.draft))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 const featured = posts.filter((post) => post.data.featured).slice(0, 3);
 const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
+const ecoAgentUrl = `${base}/eco-sourcing-agent/index.html`;
 const qimuHomeUrl = `${base}/qimu-home/`;
 const pawformUrl = `${base}/pawform/`;
 const aurenObjectsUrl = `${base}/auren-objects/`;
 const novaTurnUrl = `${base}/nova-turn/`;
 const nourishFreshUrl = `${base}/nourish-fresh/`;
+const motionSitesReportUrl = "https://github.com/EdithJenius/Codex_f/tree/main/Web/reports/motionsites";
 const webProjects = [
   {
     title: "栖木家居 QIMU HOME",
@@ -79,7 +81,7 @@ const webProjects = [
         </div>
         <div class="proof-row" aria-label="内容概览">
           <span><strong>3</strong> 个实践方向</span>
-          <span><strong>5</strong> 个网页作品</span>
+          <span><strong>11</strong> 个公开项目</span>
           <span><strong>持续</strong> 更新笔记</span>
         </div>
       </div>
@@ -255,25 +257,30 @@ const webProjects = [
         <p class="eyebrow">CURRENT BUILDS</p>
         <h2 class="section-title">近期项目更新</h2>
         <p class="section-lead">
-          这几天的工作更偏可交付原型：一个可替换真实素材的定制珠宝网站、
-          一个面向客户自助初筛的马尔代夫选岛工具，以及继续入库的 AI 工程候选知识。
+          知识迭代引擎、选品 Agent、JARVIS 与设计灵感监测持续迭代，
+          记录从产品实验到长期工作流的最新进展。
         </p>
       </div>
       <div class="build-list">
         <article>
           <span>01</span>
-          <h3>Lumea Atelier 定制珠宝原型</h3>
-          <p>静态网站底稿，包含首页、在线设计器、灵感图库、宝石库、定制指南、FAQ 与咨询表单，后续可接入真实成品图和 CRM。</p>
+          <h3><a href={knowledgeEngineUrl}>2026-07-17 每周知识蒸馏</a></h3>
+          <p>新增 3 条 Inbox 候选、1 条失败样本和 3 份候选变更单，把 Prompt 精简、AI 工作台接线和洞天 GDS 限流口径纳入知识迭代系统。</p>
         </article>
         <article>
           <span>02</span>
-          <h3>马尔代夫选岛方案生成器</h3>
-          <p>把约 100 个岛屿的预算、交通、餐标、浮潜、房型和注意事项结构化，用于生成 2 个预算内方案和 2 个升级方案。</p>
+          <h3><a href={ecoAgentUrl}>电商选品 Agent 指挥台</a></h3>
+          <p>继续保留选品雷达、趋势信号、竞品监控、供应商数量、利润预算和下一步行动建议，用作电商选品工作流的前端原型。</p>
         </article>
         <article>
           <span>03</span>
-          <h3>6 月 25 日知识入库</h3>
-          <p>新增微信小微 AI 生态、AI 同事组织心理风险、Harness 工程实践等候选来源，继续补齐 Agent 与小程序 Skill 化主线。</p>
+          <h3><a href="https://github.com/EdithJenius/JARVIS-Releases/releases/tag/v0.357.18-private.1" target="_blank" rel="noreferrer">J.A.R.V.I.S 私人测试版</a></h3>
+          <p>保持私人测试版发布链路，围绕原创主题、悬浮指令核心、权限状态、私人备份、诊断脱敏和私有更新源继续沉淀。</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3><a href={motionSitesReportUrl} target="_blank" rel="noreferrer">MotionSites 设计灵感监测</a></h3>
+          <p>建立 357 个作品基线，持续追踪设计与动效案例；7 月 20 日已识别并归档 4 个新增作品，报告保存在 GitHub。</p>
         </article>
       </div>
     </div>
@@ -396,6 +403,7 @@ const webProjects = [
   .build-list article { display: grid; grid-template-columns: 54px minmax(160px, .42fr) 1fr; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--line); }
   .build-list span { color: var(--accent); font-family: Georgia, serif; font-size: 13px; }
   .build-list h3 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: 22px; font-weight: 500; line-height: 1.35; }
+  .build-list h3 a:hover { color: var(--accent); }
   .build-list p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
   .section-row { display: flex; align-items: end; justify-content: space-between; }
   .post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 42px; margin-top: 48px; }
