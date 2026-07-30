@@ -9,13 +9,58 @@ const posts = (await getCollection("posts", ({ data }) => !data.draft))
   .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
 const featured = posts.filter((post) => post.data.featured).slice(0, 3);
 const knowledgeEngineUrl = `${base}/knowledge-engine/index.html`;
-const ecoAgentUrl = `${base}/eco-sourcing-agent/index.html`;
-const qimuHomeUrl = `${base}/qimu-home/index.html`;
-const pawformUrl = `${base}/pawform/index.html`;
-const aurenObjectsUrl = `${base}/auren-objects/index.html`;
-const novaTurnUrl = `${base}/nova-turn/index.html`;
-const nourishFreshUrl = `${base}/nourish-fresh/index.html`;
-const motionSitesReportUrl = "https://github.com/EdithJenius/Codex_f/tree/main/Web/reports/motionsites";
+const qimuHomeUrl = `${base}/qimu-home/`;
+const pawformUrl = `${base}/pawform/`;
+const aurenObjectsUrl = `${base}/auren-objects/`;
+const novaTurnUrl = `${base}/nova-turn/`;
+const nourishFreshUrl = `${base}/nourish-fresh/`;
+const webProjects = [
+  {
+    title: "栖木家居 QIMU HOME",
+    category: "家居品牌合作站",
+    description: "以实木家具为原点，呈现产品场景、材质工艺与城市合作路径。",
+    href: qimuHomeUrl,
+    image: `${base}/images/web-portfolio/qimu-home.jpg`,
+    alt: "栖木家居网站首页，深色文字区与家居空间场景并列",
+    featured: true,
+  },
+  {
+    title: "PAWFORM",
+    category: "宠物生活品牌站",
+    description: "连接营养、居家与户外日常的宠物品牌体验。",
+    href: pawformUrl,
+    image: `${base}/images/web-portfolio/pawform.jpg`,
+    alt: "PAWFORM 网站首页，金毛犬与宠物生活用品陈列",
+    featured: false,
+  },
+  {
+    title: "AUREN OBJECTS",
+    category: "珠宝零售体验站",
+    description: "以光影探索首饰系列，并串联商品、收藏与购物袋交互。",
+    href: aurenObjectsUrl,
+    image: `${base}/images/web-portfolio/auren-objects.jpg`,
+    alt: "AUREN OBJECTS 网站首页，蓝色宝石戒指置于深色矿石背景",
+    featured: false,
+  },
+  {
+    title: "NOVA TURN",
+    category: "工业设备销售站",
+    description: "面向中文市场的数控车床官网，强调产品能力与询价转化。",
+    href: novaTurnUrl,
+    image: `${base}/images/web-portfolio/nova-turn.jpg`,
+    alt: "NOVA TURN 网站首页，数控加工场景与中文产品标题",
+    featured: false,
+  },
+  {
+    title: "Nourish Fresh",
+    category: "宠物鲜食体验站",
+    description: "围绕鲜食配方、原料与冷链故事构建沉浸式产品体验。",
+    href: nourishFreshUrl,
+    image: `${base}/images/web-portfolio/nourish-fresh.jpg`,
+    alt: "Nourish Fresh 网站首页，宠物影像与鲜食产品组成画面",
+    featured: false,
+  },
+];
 ---
 
 <BaseLayout>
@@ -34,7 +79,7 @@ const motionSitesReportUrl = "https://github.com/EdithJenius/Codex_f/tree/main/W
         </div>
         <div class="proof-row" aria-label="内容概览">
           <span><strong>3</strong> 个实践方向</span>
-          <span><strong>11</strong> 个公开项目</span>
+          <span><strong>5</strong> 个网页作品</span>
           <span><strong>持续</strong> 更新笔记</span>
         </div>
       </div>
@@ -62,6 +107,39 @@ const motionSitesReportUrl = "https://github.com/EdithJenius/Codex_f/tree/main/W
         <a href={`${base}/posts/`}>Agent 系统</a>
         <a href={`${base}/posts/`}>知识工作流</a>
         <a href={`${base}/projects/`}>项目复盘</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="web-portfolio" id="web-portfolio">
+    <div class="shell">
+      <div class="portfolio-heading">
+        <p class="eyebrow">WEB PORTFOLIO</p>
+        <h2 class="section-title">网页作品集</h2>
+        <p class="section-lead">从消费品牌到工业设备，五个独立网站均已部署为可直接访问的 GitHub Pages 静态站。</p>
+      </div>
+      <div class="portfolio-grid">
+        {webProjects.map((project) => (
+          <a class:list={["portfolio-item", { featured: project.featured }]} href={project.href}>
+            <figure class="portfolio-media">
+              <img
+                src={project.image}
+                alt={project.alt}
+                loading={project.featured ? "eager" : "lazy"}
+                width="1440"
+                height="960"
+              />
+            </figure>
+            <div class="portfolio-copy">
+              <div>
+                <p>{project.category}</p>
+                <h3>{project.title}</h3>
+              </div>
+              <p class="portfolio-description">{project.description}</p>
+              <span>打开网站 <ArrowRight size={16} /></span>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -177,55 +255,25 @@ const motionSitesReportUrl = "https://github.com/EdithJenius/Codex_f/tree/main/W
         <p class="eyebrow">CURRENT BUILDS</p>
         <h2 class="section-title">近期项目更新</h2>
         <p class="section-lead">
-          五个独立品牌站现已统一发布：从家居、宠物到零售与内容体验；知识迭代引擎、
-          选品 Agent 和 JARVIS 也持续作为可访问的产品实验。
+          这几天的工作更偏可交付原型：一个可替换真实素材的定制珠宝网站、
+          一个面向客户自助初筛的马尔代夫选岛工具，以及继续入库的 AI 工程候选知识。
         </p>
       </div>
       <div class="build-list">
         <article>
           <span>01</span>
-          <h3><a href={qimuHomeUrl}>栖木家居 QIMU HOME</a></h3>
-          <p>为实木床和餐桌椅打造品牌合作样板站，覆盖产品场景、材质承诺、工程配套、城市合作与门店共创，并提供合作咨询弹窗。</p>
+          <h3>Lumea Atelier 定制珠宝原型</h3>
+          <p>静态网站底稿，包含首页、在线设计器、灵感图库、宝石库、定制指南、FAQ 与咨询表单，后续可接入真实成品图和 CRM。</p>
         </article>
         <article>
           <span>02</span>
-          <h3><a href={pawformUrl}>PAWFORM 宠物品牌站</a></h3>
-          <p>围绕宠物食品、用品与日常护理构建的品牌体验站，包含产品分类、内容叙事和可探索的品类页面。</p>
+          <h3>马尔代夫选岛方案生成器</h3>
+          <p>把约 100 个岛屿的预算、交通、餐标、浮潜、房型和注意事项结构化，用于生成 2 个预算内方案和 2 个升级方案。</p>
         </article>
         <article>
           <span>03</span>
-          <h3><a href={aurenObjectsUrl}>AUREN OBJECTS</a></h3>
-          <p>面向生活器物的零售样板站，提供作品集合、商品详情、购物袋和品牌故事等完整交互链路。</p>
-        </article>
-        <article>
-          <span>04</span>
-          <h3><a href={novaTurnUrl}>NOVA TURN</a></h3>
-          <p>面向中文市场的销售型官网实验，聚焦清晰的产品价值表达、核心内容层级与转化路径。</p>
-        </article>
-        <article>
-          <span>05</span>
-          <h3><a href={nourishFreshUrl}>Nourish Fresh</a></h3>
-          <p>以鲜食、配方和原料为主线的宠物食品体验站，包含食材视觉、产品筛选和沉浸式内容模块。</p>
-        </article>
-        <article>
-          <span>06</span>
-          <h3><a href={knowledgeEngineUrl}>2026-07-17 每周知识蒸馏</a></h3>
-          <p>新增 3 条 Inbox 候选、1 条失败样本和 3 份候选变更单，把 Prompt 精简、AI 工作台接线和洞天 GDS 限流口径纳入知识迭代系统。</p>
-        </article>
-        <article>
-          <span>07</span>
-          <h3><a href={ecoAgentUrl}>电商选品 Agent 指挥台</a></h3>
-          <p>继续保留选品雷达、趋势信号、竞品监控、供应商数量、利润预算和下一步行动建议，用作电商选品工作流的前端原型。</p>
-        </article>
-        <article>
-          <span>08</span>
-          <h3><a href="https://github.com/EdithJenius/JARVIS-Releases/releases/tag/v0.357.18-private.1" target="_blank" rel="noreferrer">J.A.R.V.I.S 私人测试版</a></h3>
-          <p>保持私人测试版发布链路，围绕原创主题、悬浮指令核心、权限状态、私人备份、诊断脱敏和私有更新源继续沉淀。</p>
-        </article>
-        <article>
-          <span>09</span>
-          <h3><a href={motionSitesReportUrl} target="_blank" rel="noreferrer">MotionSites 设计灵感监测</a></h3>
-          <p>建立 357 个作品基线，持续追踪设计与动效案例；7 月 20 日已识别并归档 4 个新增作品，报告保存在 GitHub。</p>
+          <h3>6 月 25 日知识入库</h3>
+          <p>新增微信小微 AI 生态、AI 同事组织心理风险、Harness 工程实践等候选来源，继续补齐 Agent 与小程序 Skill 化主线。</p>
         </article>
       </div>
     </div>
@@ -296,6 +344,25 @@ const motionSitesReportUrl = "https://github.com/EdithJenius/Codex_f/tree/main/W
   .topic-inner div { display: flex; flex-wrap: wrap; gap: 30px; }
   .topic-inner a { font-family: Georgia, "Noto Serif SC", serif; font-size: 15px; }
   .topic-inner a:hover { color: var(--accent); }
+  .web-portfolio { padding: 92px 0 96px; border-bottom: 1px solid var(--line); background: #fffdf8; }
+  .portfolio-heading { max-width: 720px; }
+  .portfolio-heading .section-lead { margin-top: 22px; }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 58px 28px; margin-top: 50px; }
+  .portfolio-item { display: block; min-width: 0; color: inherit; }
+  .portfolio-item.featured { grid-column: 1 / -1; }
+  .portfolio-media { overflow: hidden; aspect-ratio: 3 / 2; margin: 0; border: 1px solid var(--line); background: #e8e7e2; }
+  .portfolio-item.featured .portfolio-media { aspect-ratio: 12 / 5; }
+  .portfolio-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .35s ease; }
+  .portfolio-item:hover .portfolio-media img { transform: scale(1.018); }
+  .portfolio-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 7px; }
+  .portfolio-copy { display: grid; grid-template-columns: minmax(0, .8fr) minmax(180px, 1fr) auto; gap: 30px; align-items: start; padding-top: 18px; border-top: 1px solid var(--ink); }
+  .portfolio-copy p { margin: 0; }
+  .portfolio-copy > div > p { color: var(--accent); font-size: 11px; font-weight: 750; text-transform: uppercase; }
+  .portfolio-copy h3 { margin: 8px 0 0; font-family: Georgia, "Noto Serif SC", serif; font-size: 25px; font-weight: 500; line-height: 1.2; }
+  .portfolio-description { color: var(--muted); font-size: 13px; line-height: 1.75; }
+  .portfolio-copy > span { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 750; white-space: nowrap; }
+  .portfolio-item:not(.featured) .portfolio-copy { grid-template-columns: 1fr auto; gap: 18px; }
+  .portfolio-item:not(.featured) .portfolio-description { grid-column: 1 / -1; grid-row: 2; }
   .focus, .latest, .lab-updates, .current-builds { padding: 88px 0; }
   .focus { background: var(--surface); }
   .focus-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; }
@@ -329,7 +396,6 @@ const motionSitesReportUrl = "https://github.com/EdithJenius/Codex_f/tree/main/W
   .build-list article { display: grid; grid-template-columns: 54px minmax(160px, .42fr) 1fr; gap: 24px; padding: 26px 0; border-bottom: 1px solid var(--line); }
   .build-list span { color: var(--accent); font-family: Georgia, serif; font-size: 13px; }
   .build-list h3 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: 22px; font-weight: 500; line-height: 1.35; }
-  .build-list h3 a:hover { color: var(--accent); }
   .build-list p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
   .section-row { display: flex; align-items: end; justify-content: space-between; }
   .post-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 42px; margin-top: 48px; }
@@ -347,6 +413,11 @@ const motionSitesReportUrl = "https://github.com/EdithJenius/Codex_f/tree/main/W
     .hero { padding-top: 38px; }
     .hero-grid { grid-template-columns: 1fr; gap: 34px; }
     .hero-visual { min-height: 320px; }
+    .portfolio-grid { grid-template-columns: 1fr; gap: 46px; }
+    .portfolio-item.featured { grid-column: auto; }
+    .portfolio-item.featured .portfolio-media { aspect-ratio: 3 / 2; }
+    .portfolio-copy, .portfolio-item:not(.featured) .portfolio-copy { grid-template-columns: 1fr auto; gap: 18px; }
+    .portfolio-description, .portfolio-item:not(.featured) .portfolio-description { grid-column: 1 / -1; grid-row: 2; }
     .focus-heading { grid-template-columns: 1fr; gap: 24px; }
     .focus-grid { grid-template-columns: 1fr; gap: 32px; }
     .focus-grid h3 { margin-top: 24px; }
@@ -367,6 +438,11 @@ const motionSitesReportUrl = "https://github.com/EdithJenius/Codex_f/tree/main/W
     .proof-row { gap: 12px 18px; }
     .topic-inner { padding: 18px 0; align-items: flex-start; flex-direction: column; gap: 14px; }
     .topic-inner div { gap: 12px 22px; }
+    .web-portfolio { padding: 68px 0 72px; }
+    .portfolio-grid { margin-top: 38px; }
+    .portfolio-copy, .portfolio-item:not(.featured) .portfolio-copy { grid-template-columns: 1fr; }
+    .portfolio-copy > span { grid-row: 3; justify-self: start; }
+    .portfolio-description, .portfolio-item:not(.featured) .portfolio-description { grid-column: 1; grid-row: 2; }
     .visual-center strong { font-size: 42px; }
     .engine-preview-body { grid-template-columns: 1fr; }
     .engine-preview-body div { min-height: 96px; }
@@ -374,5 +450,9 @@ const motionSitesReportUrl = "https://github.com/EdithJenius/Codex_f/tree/main/W
     .section-row, .connect-inner { align-items: flex-start; flex-direction: column; gap: 24px; }
     .project-inner { grid-template-columns: 1fr; }
     .project-inner > a { grid-column: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .portfolio-media img { transition: none; }
+    .portfolio-item:hover .portfolio-media img { transform: none; }
   }
 </style>
