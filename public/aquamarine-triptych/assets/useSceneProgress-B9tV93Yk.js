@@ -1,0 +1,1 @@
+import{f as e,m as t}from"./index-DOoPDlCA.js";function n(n){let{scrollYProgress:r}=t({target:n,offset:[`start end`,`end start`]});return{progress:r,scale:e(r,[0,.5,1],[.96,1,1.04]),opacity:e(r,[0,.16,.84,1],[0,1,1,0])}}export{n as t};
