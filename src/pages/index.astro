@@ -18,11 +18,11 @@ const aquamarineTriptychUrl = `${base}/aquamarine-triptych/`;
 const oneDropLandscapeUrl = `${base}/one-drop-landscape/`;
 const guanshanUrl = `${base}/guanshan/`;
 const codexRepoUrl = "https://github.com/EdithJenius/Codex_f";
-const obsidianJournalUrl = `${codexRepoUrl}/tree/main/update/obsidian-century-journal`;
-const xhsResearchUrl = `${codexRepoUrl}/blob/main/xhs_mcpdev/research-data/2026-08-09_%E5%A4%96%E8%B4%B8%E7%8B%AC%E7%AB%8B%E7%AB%99%E5%85%AC%E5%BC%80%E6%91%98%E8%A6%81.md`;
+const feishuBridgeUrl = `${codexRepoUrl}/tree/main/update/feishu-codex-bridge`;
+const photoNebulaUrl = `${codexRepoUrl}/tree/main/update/obsidian-century-journal/tools/century-photo-nebula`;
+const voiceCloningUrl = `${codexRepoUrl}/tree/main/update/voice-cloning`;
 const minimaxLabUrl = `${codexRepoUrl}/tree/main/minimax-h3-lab`;
-const courtAssistantUrl = `${codexRepoUrl}/tree/main/minipro`;
-const weeklyDistillationUrl = `${codexRepoUrl}/blob/main/%E6%AF%8F%E5%91%A8%E8%92%B8%E9%A6%8F/2026-07-31_%E6%AF%8F%E5%91%A8%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F.md`;
+const weeklyDistillationUrl = `${codexRepoUrl}/blob/main/%E6%AF%8F%E5%91%A8%E8%92%B8%E9%A6%8F/2026-08-14_%E6%AF%8F%E5%91%A8%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F.md`;
 const webProjects = [
   {
     title: "栖木家居 QIMU HOME",
@@ -291,35 +291,35 @@ const webProjects = [
         <p class="eyebrow">CURRENT BUILDS</p>
         <h2 class="section-title">近期项目更新</h2>
         <p class="section-lead">
-          从本地知识系统、内容研究到生成式视频与自动化工具，
-          记录近期完成验证、可以复用的项目进展。
+          从个人 AI 工作台、本地照片知识界面到授权语音实验，
+          记录近期通过验证、可以继续复用的项目进展。
         </p>
       </div>
       <div class="build-list">
         <article>
           <span>01</span>
-          <h3><a href={obsidianJournalUrl} target="_blank" rel="noreferrer">Obsidian 百年日记</a></h3>
-          <p>完成纯本地日、周、月、年记录系统，串联 Journals、Bases、Templater 与 Day Planner，并明确 AI 复盘和同步的隐私边界。</p>
+          <h3><a href={feishuBridgeUrl} target="_blank" rel="noreferrer">Feishu Codex Bridge</a></h3>
+          <p>形成“飞书单人消息 → 每日素材箱 → 串行 Codex → Obsidian 百年日记”的本地桥接基础，112 项测试与 TypeScript 构建通过。</p>
         </article>
         <article>
           <span>02</span>
-          <h3><a href={xhsResearchUrl} target="_blank" rel="noreferrer">外贸独立站小红书研究</a></h3>
-          <p>对 50 个公开账号与 50 篇代表性内容做去标识化汇总，区分咨询转化与收藏传播逻辑，沉淀可复用的内容结构建议。</p>
+          <h3><a href={photoNebulaUrl} target="_blank" rel="noreferrer">Century Photo Nebula</a></h3>
+          <p>把百年日记照片组织为完全本地的 3D 关系视图，支持人物、地点、时间与事件布局；42 项测试、构建和 Vault 校验通过。</p>
         </article>
         <article>
           <span>03</span>
-          <h3><a href={minimaxLabUrl} target="_blank" rel="noreferrer">MiniMax H3 Lab</a></h3>
-          <p>建立面向水晶、珠宝与商品广告的视频实验目录，沉淀提示词、分镜、参数、成本和质检记录，并保留本机推理的安全边界。</p>
+          <h3><a href={voiceCloningUrl} target="_blank" rel="noreferrer">本地授权语音克隆与配音</a></h3>
+          <p>建立授权音色、ASR 回读、定时配音与响度检查的本地证据链；公开快照只保留方法、脚本和验证说明，不包含参考音频。</p>
         </article>
         <article>
           <span>04</span>
-          <h3><a href={courtAssistantUrl} target="_blank" rel="noreferrer">羽毛球抢场助手 v0.4.4</a></h3>
-          <p>完成 Mac 与安卓真机协作的抢场辅助链路，支持候选时段、开抢前预热、视觉校准与支付验证前安全停止。</p>
+          <h3><a href={weeklyDistillationUrl} target="_blank" rel="noreferrer">2026-08-14 每周知识蒸馏</a></h3>
+          <p>新增 3 条 Inbox 候选和 3 份变更单，将飞书桥接、照片神经星云与本地授权语音方法纳入后续真实使用评测。</p>
         </article>
         <article>
           <span>05</span>
-          <h3><a href={weeklyDistillationUrl} target="_blank" rel="noreferrer">2026-07-31 每周知识蒸馏</a></h3>
-          <p>新增 2 条 Inbox 候选、1 条失败样本和 2 份变更单，将 Skill 路由、视频流水线证据与独立站内容结构纳入后续实验。</p>
+          <h3><a href={minimaxLabUrl} target="_blank" rel="noreferrer">MiniMax H3 Lab</a></h3>
+          <p>继续保留水晶、珠宝与商品广告的视频实验结构，沉淀提示词、分镜、参数、成本和质检记录，并明确本机推理边界。</p>
         </article>
       </div>
     </div>
