@@ -1,6 +1,8 @@
 ---
-import { ArrowUpRight, Boxes, BookOpen, BrainCircuit, LayoutDashboard } from "@lucide/astro";
+import { ArrowUpRight, Boxes, BookOpen, BrainCircuit, Cuboid, Film, LayoutDashboard, Workflow } from "@lucide/astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <BaseLayout title="项目 | Edith">
@@ -62,6 +64,45 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <div class="tags"><span>知识工程</span><span>评测体系</span><span>持续迭代</span></div>
         </div>
         <a href="https://github.com/EdithJenius/Codex_f/tree/main/KnowledgeSystem" target="_blank" rel="noreferrer" aria-label="查看知识收集与迭代系统">
+          <ArrowUpRight size={20} />
+        </a>
+      </article>
+      <article>
+        <div class="project-index">05</div>
+        <div class="project-icon"><Cuboid size={24} /></div>
+        <div>
+          <p class="project-type">3D PRODUCT EXPERIENCE</p>
+          <h2>Sonora S1</h2>
+          <p>以 Three.js 构建的模块化概念音箱，通过拆解、配色和滚动叙事展示产品的结构与氛围。</p>
+          <div class="tags"><span>Three.js</span><span>GSAP</span><span>3D 叙事</span></div>
+        </div>
+        <a href={`${base}/sonora-s1/v2.html`} aria-label="打开 Sonora S1 网站">
+          <ArrowUpRight size={20} />
+        </a>
+      </article>
+      <article>
+        <div class="project-index">06</div>
+        <div class="project-icon"><Film size={24} /></div>
+        <div>
+          <p class="project-type">VIDEO AGENT</p>
+          <h2>DaVinci AutoEdit Agent</h2>
+          <p>从素材分析、文案与蓝图到 Resolve 时间线的自动剪辑流程，包含自适应抽帧、音频证据和可验证预览。</p>
+          <div class="tags"><span>Codex Skill</span><span>FFmpeg</span><span>DaVinci Resolve</span></div>
+        </div>
+        <a href="https://github.com/EdithJenius/Codex_f/tree/main/%E8%A7%86%E9%A2%91%E6%B5%81/DaVinci-AutoEdit-Agent" target="_blank" rel="noreferrer" aria-label="查看 DaVinci AutoEdit Agent">
+          <ArrowUpRight size={20} />
+        </a>
+      </article>
+      <article>
+        <div class="project-index">07</div>
+        <div class="project-icon"><Workflow size={24} /></div>
+        <div>
+          <p class="project-type">OPEN SOURCE CONTROL PLANE</p>
+          <h2>Webup Agent Team Control Plane</h2>
+          <p>面向多角色网站交付的任务、租约、审批、素材权利与发布控制平面，以独立公开仓库维护。</p>
+          <div class="tags"><span>Agent Team</span><span>Governance</span><span>Open Source</span></div>
+        </div>
+        <a href="https://github.com/EdithJenius/webup-agent-team-control-plane" target="_blank" rel="noreferrer" aria-label="查看 Webup Agent Team Control Plane">
           <ArrowUpRight size={20} />
         </a>
       </article>

@@ -18,13 +18,22 @@ const aquamarineTriptychUrl = `${base}/aquamarine-triptych/`;
 const oneDropLandscapeUrl = `${base}/one-drop-landscape/`;
 const guanshanUrl = `${base}/guanshan/`;
 const baguaUrl = `${base}/bagua/`;
+const sonoraUrl = `${base}/sonora-s1/v2.html`;
 const codexRepoUrl = "https://github.com/EdithJenius/Codex_f";
-const feishuBridgeUrl = `${codexRepoUrl}/tree/main/update/feishu-codex-bridge`;
-const photoNebulaUrl = `${codexRepoUrl}/tree/main/update/obsidian-century-journal/tools/century-photo-nebula`;
-const baguaSourceUrl = `${codexRepoUrl}/tree/main/update/bagua-3d-site`;
-const webupUrl = `${codexRepoUrl}/tree/main/ChatGPT/webup`;
-const weeklyDistillationUrl = `${codexRepoUrl}/blob/main/%E6%AF%8F%E5%91%A8%E8%92%B8%E9%A6%8F/2026-08-21_%E6%AF%8F%E5%91%A8%E7%9F%A5%E8%AF%86%E8%92%B8%E9%A6%8F.md`;
+const sonoraSourceUrl = `${codexRepoUrl}/tree/main/ChatGPT/sonora-3d`;
+const davinciUrl = `${codexRepoUrl}/tree/main/%E8%A7%86%E9%A2%91%E6%B5%81/DaVinci-AutoEdit-Agent`;
+const douyinMcpUrl = `${codexRepoUrl}/tree/main/xhs_mcpdev/cmd/douyin-mcp`;
+const webupUrl = "https://github.com/EdithJenius/webup-agent-team-control-plane";
 const webProjects = [
+  {
+    title: "Sonora S1",
+    category: "3D 概念产品体验站",
+    description: "以可拆解音箱、滚动叙事与配色切换，探索声音、材料与空间的关系。",
+    href: sonoraUrl,
+    image: `${base}/images/web-portfolio/sonora-s1.jpg`,
+    alt: "Sonora S1 模块化音箱的 3D 产品体验首屏",
+    featured: true,
+  },
   {
     title: "栖木家居 QIMU HOME",
     category: "家居品牌合作站",
@@ -32,7 +41,7 @@ const webProjects = [
     href: qimuHomeUrl,
     image: `${base}/images/web-portfolio/qimu-home.jpg`,
     alt: "栖木家居网站首页，深色文字区与家居空间场景并列",
-    featured: true,
+    featured: false,
   },
   {
     title: "PAWFORM",
@@ -125,7 +134,7 @@ const webProjects = [
         </div>
         <div class="proof-row" aria-label="内容概览">
           <span><strong>3</strong> 个实践方向</span>
-          <span><strong>15</strong> 个公开项目</span>
+          <span><strong>16</strong> 个项目入口</span>
           <span><strong>持续</strong> 更新笔记</span>
         </div>
       </div>
@@ -162,7 +171,7 @@ const webProjects = [
       <div class="portfolio-heading">
         <p class="eyebrow">WEB PORTFOLIO</p>
         <h2 class="section-title">网页作品集</h2>
-        <p class="section-lead">从消费品牌、工业设备到 3D 文化体验，九个独立网站均已部署为可直接访问的 GitHub Pages 静态站。</p>
+        <p class="section-lead">从消费品牌、工业设备到 3D 文化与概念产品体验，十个独立网站均已部署为可直接访问的 GitHub Pages 静态站。</p>
       </div>
       <div class="portfolio-grid">
         {webProjects.map((project) => (
@@ -301,35 +310,35 @@ const webProjects = [
         <p class="eyebrow">CURRENT BUILDS</p>
         <h2 class="section-title">近期项目更新</h2>
         <p class="section-lead">
-          从 3D 文化体验、多角色网站交付控制平面到周度知识证据，
+          从 3D 产品体验、自动剪辑到多角色网站交付和内容研究工具，
           记录近期通过验证、可以继续复用的项目进展。
         </p>
       </div>
       <div class="build-list">
         <article>
           <span>01</span>
-          <h3><a href={baguaUrl}>玄枢 · 3D 八卦六爻</a></h3>
-          <p>用 React Three Fiber 构建九层实体阵盘、蓄力唤醒、六次起卦与响应式降级；源码、单元测试和三视口 E2E 均纳入公开快照。</p>
+          <h3><a href={sonoraUrl}>Sonora S1 3D 音箱</a></h3>
+          <p>用 Three.js 完成模块化音箱的拆解、运动、配色与滚动叙事，并适配 GitHub Pages 子路径部署。<a href={sonoraSourceUrl} target="_blank" rel="noreferrer">查看源码</a>。</p>
         </article>
         <article>
           <span>02</span>
-          <h3><a href={webupUrl} target="_blank" rel="noreferrer">Webup Agent Team Control Plane</a></h3>
-          <p>为多角色网站交付建立可审计的任务、租约、审批、素材权利和发布门禁；57 项测试与团队/项目验证通过，不上传 FASTCLUB 客户项目记录。</p>
+          <h3><a href={davinciUrl} target="_blank" rel="noreferrer">DaVinci AutoEdit Agent</a></h3>
+          <p>新增自适应抽帧、FFmpeg 音频证据、剪辑蓝图校验与 Resolve 能力路由，让无 Resolve 时的预览路径也能清晰运行。</p>
         </article>
         <article>
           <span>03</span>
-          <h3><a href={weeklyDistillationUrl} target="_blank" rel="noreferrer">2026-08-21 每周知识蒸馏</a></h3>
-          <p>补入 Obsidian 操作减负的真实周用证据和 CHG-039，继续把“是否真的省步骤”作为工具进入正式知识的门槛。</p>
+          <h3><a href={webupUrl} target="_blank" rel="noreferrer">Webup Agent Team Control Plane</a></h3>
+          <p>为多角色网站交付建立可审计的任务、租约、审批、素材权利和发布控制，并以独立公开仓库维护可复用实现。</p>
         </article>
         <article>
           <span>04</span>
-          <h3><a href={photoNebulaUrl} target="_blank" rel="noreferrer">Century Photo Nebula</a></h3>
-          <p>延续完全本地的 Obsidian 照片关系视图，并将真实周用中的操作减负证据回写到知识系统。</p>
+          <h3><a href={baguaUrl}>玄枢 · 3D 八卦六爻</a></h3>
+          <p>九层实体阵盘继续补强多轴翻转、极向布局、古籍纹理与高分辨率铭文，同步覆盖桌面、平板和手机测试。</p>
         </article>
         <article>
           <span>05</span>
-          <h3><a href={feishuBridgeUrl} target="_blank" rel="noreferrer">Feishu Codex Bridge</a></h3>
-          <p>保留飞书单人消息、每日素材箱、串行 Codex 与 Obsidian 百年日记的低权限桥接基础，继续等待真实端到端接入。</p>
+          <h3><a href={douyinMcpUrl} target="_blank" rel="noreferrer">抖音评论只读 MCP</a></h3>
+          <p>完成评论分页读取与连续游标传递，方便在不执行发布或互动的前提下进行内容研究。</p>
         </article>
       </div>
     </div>
