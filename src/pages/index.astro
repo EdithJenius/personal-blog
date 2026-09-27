@@ -26,6 +26,24 @@ const douyinMcpUrl = `${codexRepoUrl}/tree/main/xhs_mcpdev/cmd/douyin-mcp`;
 const webupUrl = "https://github.com/EdithJenius/webup-agent-team-control-plane";
 const webProjects = [
   {
+    title: "应县木塔 · 木构的时间",
+    category: "3D 数字博物馆实验",
+    description: "从整塔环绕、斗拱特写到分层展开与复原，探索木构建筑的结构。模型为科普示意，非测绘成果。",
+    href: `${base}/yingxian-museum/`,
+    image: `${base}/images/web-portfolio/yingxian-museum.jpg`,
+    alt: "应县木塔三维数字展厅",
+    featured: true,
+  },
+  {
+    title: "ROTOR LAB",
+    category: "旋翼机构教学实验 · 第二版",
+    description: "可旋转观察、分解与播放动画的机构实验台。外观仍待验收，不用于制造、维修或飞行安全判断。",
+    href: `${base}/rotor-lab/web/`,
+    image: `${base}/images/web-portfolio/rotor-lab.jpg`,
+    alt: "ROTOR LAB 旋翼机构三维教学实验台",
+    featured: false,
+  },
+  {
     title: "Sonora S1",
     category: "3D 概念产品体验站",
     description: "以可拆解音箱、滚动叙事与配色切换，探索声音、材料与空间的关系。",
@@ -134,7 +152,7 @@ const webProjects = [
         </div>
         <div class="proof-row" aria-label="内容概览">
           <span><strong>3</strong> 个实践方向</span>
-          <span><strong>16</strong> 个项目入口</span>
+          <span><strong>18</strong> 个项目入口</span>
           <span><strong>持续</strong> 更新笔记</span>
         </div>
       </div>
@@ -311,10 +329,20 @@ const webProjects = [
         <h2 class="section-title">近期项目更新</h2>
         <p class="section-lead">
           从 3D 产品体验、自动剪辑到多角色网站交付和内容研究工具，
-          记录近期通过验证、可以继续复用的项目进展。
+          记录近期项目进展、可体验的实验与各自的使用边界。
         </p>
       </div>
       <div class="build-list">
+        <article>
+          <span>NEW</span>
+          <h3><a href={`${base}/yingxian-museum/`}>应县木塔数字博物馆</a></h3>
+          <p>Blender 建模与 Three.js 实时展示，支持六章滚动叙事、结构展开和重新聚合；模型仅用于科普展示。</p>
+        </article>
+        <article>
+          <span>NEW</span>
+          <h3><a href={`${base}/rotor-lab/web/`}>ROTOR LAB 旋翼实验台</a></h3>
+          <p>第二版提供部件观察、实时控制与 11 段 GLB 动画。当前是视觉与运动教学近似，外观仍待验收。</p>
+        </article>
         <article>
           <span>01</span>
           <h3><a href={sonoraUrl}>Sonora S1 3D 音箱</a></h3>
